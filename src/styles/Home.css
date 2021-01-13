@@ -1,0 +1,14 @@
+.App-home {
+    padding: 80px;
+}
+
+.App-home-image {
+    width: 500px;
+}
+
+.App-home-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #76a138;
+    margin: 10px 0px;
+}
