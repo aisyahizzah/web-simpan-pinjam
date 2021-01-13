@@ -22,9 +22,15 @@ function Header() {
                                 className = "active-nav" />
                         </Nav.Link>
                                 
-                        <Nav.Link className = "link-container" href="/transaksi" >
-                            Transaksi
-                            <span style = {{display : globalHistory.location.pathname !== "/transaksi" ? "none" : "inline-block"}}
+                        <Nav.Link className = "link-container" href="/lihat-transaksi" >
+                            Lihat Transaksi
+                            <span style = {{display : globalHistory.location.pathname !== "/lihat-transaksi" ? "none" : "inline-block"}}
+                                className = "active-nav"/>
+                        </Nav.Link>
+
+                        <Nav.Link className = "link-container" href="/lapor-transaksi" >
+                            Lapor Transaksi
+                            <span style = {{display : globalHistory.location.pathname !== "/lapor-transaksi" ? "none" : "inline-block"}}
                                 className = "active-nav"/>
                         </Nav.Link>
                     </Nav>
