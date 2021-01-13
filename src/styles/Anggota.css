@@ -1,0 +1,67 @@
+.Anggota-header {
+    background-color: #76a138;
+    padding: 48px;
+}
+
+.Anggota-header-title {
+    color: white;
+    font-size: 36px;
+}
+
+.Anggota-header-tag {
+    color: white;
+}
+
+.Anggota-header-subtitle {
+    color: white;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.Anggota-body {
+    padding: 60px 150px 60px 150px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.Anggota-item {
+    height: fit-content;
+    width: 180px;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.10);
+}
+
+.Anggota-photo {
+    width: 180px;
+    height: 180px;
+}
+
+.Anggota-info {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.Anggota-nama {
+    color: #76a138;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 2px;
+}
+
+.Anggota-detail {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    font-size: 16px;
+    padding: 2px;
+    text-align: left;
+}
+
+.Anggota-icon {
+    width: 20px;
+    top: 1px;
+    margin-right: 5px;
+}

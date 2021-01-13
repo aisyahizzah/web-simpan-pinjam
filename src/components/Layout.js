@@ -8,7 +8,8 @@ const Layout = (props) => {
     return(
         <Container fluid>
             <Header />
-            {props.children}
+                <br/><br/><br/>
+                {props.children}
             <Footer />
         </Container>
     )
