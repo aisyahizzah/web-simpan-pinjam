@@ -26,12 +26,12 @@ function LihatTransaksi() {
                         <img className = "option-icon" src = {Anggota} alt="icon"/>
                         &nbsp;&nbsp;&nbsp;{ anggota }
                     </button>
-                        <div className = "Lihat-transaksi-dropdown-content">
+                    <div className = "Lihat-transaksi-dropdown-content">
                         <div class = "anggota-option">Semua</div>
-                            { daftarAnggota.map((anggota) => (
-                                <div class = "anggota-option">{ anggota }</div>
-                            ))}
-                        </div>
+                        { daftarAnggota.map((anggota) => (
+                            <div class = "anggota-option">{ anggota }</div>
+                        ))}
+                    </div>
                 </div>
                 <div className="Lihat-transaksi-tanggal">
                     <div className="Lihat-transaksi-tanggal-title">Dari tanggal : </div>

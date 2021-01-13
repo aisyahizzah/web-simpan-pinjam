@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Layout from './components/Layout';
 import Anggota from './pages/Anggota';
 import LihatTransaksi from './pages/LihatTransaksi';
+import LaporTransaksi from './pages/LaporTransaksi';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
           <Switch>
             <Route exact path="/anggota" component={Anggota}/>
             <Route exact path="/lihat-transaksi" component={LihatTransaksi}/>
+            <Route exact path="/lapor-transaksi" component={LaporTransaksi}/>
           </Switch>
         </BrowserRouter>
       </Layout>
