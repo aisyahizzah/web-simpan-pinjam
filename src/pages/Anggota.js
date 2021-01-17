@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 
 import '../styles/Anggota.css';
 
@@ -6,13 +7,19 @@ import Picture from "../images/anggota.png";
 import Ttl from "../images/icon-ttl.png";
 import Alamat from "../images/icon-alamat.png";
 
+
 function Anggota() {
     
-    const [ daftarAnggota ] = useState([
-        {nama : "Aisyah", ttl : "15 Juni 2020", alamat : "Jl Peta No 96 Bandung 40234" },
-        {nama : "Aisyah", ttl : "15 Juni 2020", alamat : "Jl Peta" },
-        {nama : "Aisyah", ttl : "15 Juni 2020", alamat : "Jl Peta" }
-    ]);
+    const [ daftarAnggota, setDaftarAnggota ] = useState([]);
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/postgressApp/memberList`)
+            .then(res => {
+               setDaftarAnggota(res.data);
+            }).catch((err) => {
+                console.log(err)
+            })
+    }, []);
 
     return(
         <div className="App-anggota">
@@ -27,14 +34,14 @@ function Anggota() {
                     <div className="Anggota-item">
                         <img src={Picture} className="Anggota-photo" alt="Anggota"/>
                         <div className="Anggota-info">
-                            <div className="Anggota-nama">{ anggota.nama }</div>
+                            <div className="Anggota-nama">{ anggota.memberName }</div>
                             <div className="Anggota-detail">
                                 <img src={Ttl} className="Anggota-icon" alt="Icon"/>
-                                <div>{ anggota.ttl }</div>
+                                <div>{ anggota.memberBirthDate }</div>
                             </div>
                             <div className="Anggota-detail">
                                 <img src={Alamat} className="Anggota-icon" alt="Icon"/>
-                                <div>{ anggota.alamat }</div>
+                                <div>{ anggota.memberAddress }</div>
                             </div>
                         </div>
                     </div>
