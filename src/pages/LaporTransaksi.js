@@ -23,21 +23,7 @@ function LaporTransaksi() {
             })
     }, []);
 
-    const inputParsers = {
-        date(input) {
-          const [month, day, year] = input.split('/');
-          return `${year}-${month}-${day}`;
-        },
-        uppercase(input) {
-          return input.toUpperCase();
-        },
-        number(input) {
-          return parseFloat(input);
-        },
-    };
-
     const handleSubmit = (event) => {
-        event.preventDefault();
 
         let current_datetime = date
 
@@ -65,9 +51,10 @@ function LaporTransaksi() {
                 'Content-Type': 'application/json'
             }})
             .then(res => {
-                alert("SUCCESS");
+                alert("Submit success!");
             })
             .catch((err) => {
+                alert("Failed to submit!");
                 console.log(err)
             })
 
