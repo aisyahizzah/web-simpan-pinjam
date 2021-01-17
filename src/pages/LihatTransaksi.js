@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-date-picker';
+import axios from 'axios'
 import Table from 'react-bootstrap/Table'
 import '../styles/LihatTransaksi.css';
 import Anggota from '../images/icon-anggota.png';
@@ -7,13 +8,25 @@ import Anggota from '../images/icon-anggota.png';
 
 function LihatTransaksi() {
     const [ anggota ] = useState(["Semua"])
-    const [ daftarAnggota ] = useState(["Aisyah", "Nurul", "Izzah"]);
+    const [ daftarAnggota, setDaftarAnggota ] = useState([]);
     const [value, onChange] = useState(new Date());
-    const [ daftarTransaksi ] = useState([
-        {transaksi : "Simpan", jumlah : 100000, anggota : "Aisyah", tanggal : "10/05/2020" },
-        {transaksi : "Simpan", jumlah : 100000, anggota : "Aisyah", tanggal : "10/05/2020" },
-        {transaksi : "Simpan", jumlah : 100000, anggota : "Aisyah", tanggal : "10/05/2020" },
-    ])
+    const [ daftarTransaksi, setDaftarTransaksi ] = useState([])
+
+    useEffect(() => {
+        axios.get(`http://localhost:8080/simpanPinjam/mutation/all`)
+            .then(res => {
+               setDaftarTransaksi(res.data);
+            }).catch((err) => {
+                console.log(err)
+            })
+        
+        axios.get(`http://localhost:8080/simpanPinjam/member/name`)
+            .then(res => {
+               setDaftarAnggota(res.data);
+            }).catch((err) => {
+                console.log(err)
+            })
+    }, []);
 
     return(
         <div className="App-lihat-transaksi">
@@ -63,10 +76,10 @@ function LihatTransaksi() {
                             daftarTransaksi.map((transaksi, index) => (
                                 <tr>
                                     <td>{ index }</td>
-                                    <td>{ transaksi.tanggal }</td>
-                                    <td>{ transaksi.transaksi }</td>
-                                    <td>{ transaksi.jumlah }</td>
-                                    <td>{ transaksi.anggota }</td>
+                                    <td>{ transaksi.mutationDate }</td>
+                                    <td>{ transaksi.mutationTransactionType }</td>
+                                    <td>{ transaksi.mutationNominal }</td>
+                                    <td>{ transaksi.mutationMemberName }</td>
                                 </tr>
                             ))
                         }

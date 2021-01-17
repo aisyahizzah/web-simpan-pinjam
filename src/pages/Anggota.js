@@ -13,7 +13,7 @@ function Anggota() {
     const [ daftarAnggota, setDaftarAnggota ] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8080/postgressApp/memberList`)
+        axios.get(`http://localhost:8080/simpanPinjam/member/all`)
             .then(res => {
                setDaftarAnggota(res.data);
             }).catch((err) => {
