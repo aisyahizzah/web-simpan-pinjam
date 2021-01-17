@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-date-picker';
-import axios from 'axios'
+import axios from 'axios';
 import Table from 'react-bootstrap/Table'
 import '../styles/LihatTransaksi.css';
 import Anggota from '../images/icon-anggota.png';
