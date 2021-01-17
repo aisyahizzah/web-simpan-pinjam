@@ -7,9 +7,10 @@ import Anggota from '../images/icon-anggota.png';
 
 
 function LihatTransaksi() {
-    const [ anggota ] = useState(["Semua"])
+    const [ anggota, changeAnggota ] = useState("Semua")
     const [ daftarAnggota, setDaftarAnggota ] = useState([]);
-    const [value, onChange] = useState(new Date());
+    const [ fromDate, changeFromDate ] = useState(new Date());
+    const [ toDate, changeToDate ] = useState(new Date());
     const [ daftarTransaksi, setDaftarTransaksi ] = useState([])
 
     useEffect(() => {
@@ -49,14 +50,14 @@ function LihatTransaksi() {
                 <div className="Lihat-transaksi-tanggal">
                     <div className="Lihat-transaksi-tanggal-title">Dari tanggal : </div>
                     <DatePicker customStyles={{dateInput:{borderWidth: 0}}} className="Lihat-transaksi-date-picker"
-                        onChange={onChange}
-                        value={value}
+                        onChange={changeFromDate}
+                        value={fromDate}
                     />
                     <div className="padding"></div>
                     <div className="Lihat-transaksi-tanggal-title">Sampai tanggal : </div>
                     <DatePicker className="Lihat-transaksi-date-picker"
-                        onChange={onChange}
-                        value={value}
+                        onChange={changeToDate}
+                        value={toDate}
                     />
                 </div>
             </div>
@@ -73,7 +74,17 @@ function LihatTransaksi() {
                     </thead>
                     <tbody>
                         {
-                            daftarTransaksi.map((transaksi, index) => (
+                            daftarTransaksi
+                            .filter((transaksi) => {
+                                if (fromDate != null && toDate == null){
+                                    return Date.parse(transaksi.mutationDate) >= Date.parse(fromDate);
+                                } else if (fromDate == null && toDate != null){
+                                    return Date.parse(transaksi.mutationDate) <= Date.parse(toDate);
+                                } else if (fromDate != null && toDate != null){
+                                    return Date.parse(transaksi.mutationDate) >= Date.parse(fromDate) && Date.parse(transaksi.mutationDate) <= Date.parse(toDate);
+                                }
+                            })
+                            .map((transaksi, index) => (
                                 <tr>
                                     <td>{ index }</td>
                                     <td>{ transaksi.mutationDate }</td>
