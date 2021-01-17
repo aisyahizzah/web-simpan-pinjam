@@ -31,43 +31,43 @@ public class MemberDaoImpl implements MemberDao{
         return template.query("select * from member", new MemberRowMapper());
     }
     @Override
-    public void insertMember(Member emp) {
-        final String sql = "insert into member(id, name , address,birthDate) values(:id,:name,:birthDate,:address)";
+    public void insertMember(Member member) {
+        final String sql = "insert into member(memberId, memberName , memberAddress,memberBirthDate) values(:memberId,:memberName,:memberBirthDate,:memberAddress)";
 
         KeyHolder holder = new GeneratedKeyHolder();
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("id", emp.getMemberId())
-                .addValue("name", emp.getMemberName())
-                .addValue("birthDate", emp.getMemberBirthDate())
-                .addValue("address", emp.getMemberAddress());
+                .addValue("memberId", member.getMemberId())
+                .addValue("memberName", member.getMemberName())
+                .addValue("memberBirthDate", member.getMemberBirthDate())
+                .addValue("memberAddress", member.getMemberAddress());
         template.update(sql,param, holder);
 
     }
 
     @Override
-    public void updateMember(Member emp) {
-        final String sql = "update member set name=:name, address=:address, birthDate=:birthDate where id=:id";
+    public void updateMember(Member member) {
+        final String sql = "update member set memberName=:memberName, memberAddress=:memberAddress, memberBirthDate=:memberBirthDate where memberId=:memberId";
 
         KeyHolder holder = new GeneratedKeyHolder();
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("id", emp.getMemberId())
-                .addValue("name", emp.getMemberName())
-                .addValue("birthDate", emp.getMemberBirthDate())
-                .addValue("address", emp.getMemberAddress());
+                .addValue("memberId", member.getMemberId())
+                .addValue("memberName", member.getMemberName())
+                .addValue("memberBirthDate", member.getMemberBirthDate())
+                .addValue("memberAddress", member.getMemberAddress());
         template.update(sql,param, holder);
 
     }
 
     @Override
-    public void executeUpdateMember(Member emp) {
-        final String sql = "update member set name=:name, address=:address, birthDate=:birthDate where id=:id";
+    public void executeUpdateMember(Member member) {
+        final String sql = "update member set memberName=:memberName, memberAddress=:memberAddress, memberBirthDate=:memberBirthDate where memberId=:memberId";
 
 
         Map<String,Object> map=new HashMap<String,Object>();
-        map.put("id", emp.getMemberId());
-        map.put("name", emp.getMemberName());
-        map.put("birthDate", emp.getMemberBirthDate());
-        map.put("address", emp.getMemberAddress());
+        map.put("memberId", member.getMemberId());
+        map.put("memberName", member.getMemberName());
+        map.put("memberBirthDate", member.getMemberBirthDate());
+        map.put("memberAddress", member.getMemberAddress());
 
         template.execute(sql,map,new PreparedStatementCallback<Object>() {
             @Override
@@ -81,12 +81,12 @@ public class MemberDaoImpl implements MemberDao{
     }
 
     @Override
-    public void deleteMember(Member emp) {
-        final String sql = "delete from member where id=:id";
+    public void deleteMember(Member member) {
+        final String sql = "delete from member where memberId=:memberId";
 
 
         Map<String,Object> map=new HashMap<String,Object>();
-        map.put("id", emp.getMemberId());
+        map.put("memberId", member.getMemberId());
 
         template.execute(sql,map,new PreparedStatementCallback<Object>() {
             @Override

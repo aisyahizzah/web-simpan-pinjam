@@ -1,15 +1,15 @@
 CREATE TABLE member (
-    id varchar(5),
-    name varchar(20) NOT NULL,
-    birthDate DATE NOT NULL,
-    address varchar(100) DEFAULT NULL,
-    PRIMARY KEY (id)
+    memberId SERIAL NOT NULL,
+    memberName varchar(20) NOT NULL,
+    memberBirthDate DATE NOT NULL,
+    memberAddress varchar(100) DEFAULT NULL,
+    PRIMARY KEY (memberId)
 );
 
 CREATE TABLE transactionType (
-    id varchar(5),
-    name varchar(20),
-    PRIMARY KEY (id)
+    transactionId SERIAL NOT NULL,
+    transactionName varchar(20),
+    PRIMARY KEY (transactionId)
 );
 
 CREATE TABLE moneyMutation (

@@ -4,49 +4,50 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.simpanpinjam.backend.entity.Member;
 import com.simpanpinjam.backend.service.MemberService;
 
 @RestController
-@RequestMapping("/postgressApp")
+@RequestMapping("/simpanPinjam")
 public class ApplicationController {
 
     @Resource
     MemberService memberService;
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping(value = "/memberList")
     public List<Member> getMembers() {
         return memberService.findAll();
 
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping(value = "/createEmp")
-    public void createMember(@RequestBody Member emp) {
-        memberService.insertMember(emp);
+    public void createMember(@RequestBody Member member) {
+        memberService.insertMember(member);
 
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping(value = "/updateEmp")
-    public void updateMember(@RequestBody Member emp) {
-        memberService.updateMember(emp);
+    public void updateMember(@RequestBody Member member) {
+        memberService.updateMember(member);
 
     }
+
+    @CrossOrigin(origins = "http://localhost:3000")
     @PutMapping(value = "/executeUpdateEmp")
-    public void executeUpdateMember(@RequestBody Member emp) {
-        memberService.executeUpdateMember(emp);
+    public void executeUpdateMember(@RequestBody Member member) {
+        memberService.executeUpdateMember(member);
 
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @DeleteMapping(value = "/deleteEmpById")
-    public void deleteMember(@RequestBody Member emp) {
-        memberService.deleteMember(emp);
+    public void deleteMember(@RequestBody Member member) {
+        memberService.deleteMember(member);
 
     }
 
