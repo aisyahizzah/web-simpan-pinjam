@@ -7,7 +7,7 @@ import Anggota from '../images/icon-anggota.png';
 
 
 function LihatTransaksi() {
-    const [ anggota, changeAnggota ] = useState("Semua")
+    const [ anggota, setAnggota ] = useState("Semua")
     const [ daftarAnggota, setDaftarAnggota ] = useState([]);
     const [ fromDate, changeFromDate ] = useState(new Date());
     const [ toDate, changeToDate ] = useState(new Date());
@@ -23,7 +23,9 @@ function LihatTransaksi() {
         
         axios.get(`http://localhost:8080/simpanPinjam/member/name`)
             .then(res => {
-               setDaftarAnggota(res.data);
+                var temp = res.data
+                temp.unshift("Semua")
+               setDaftarAnggota(temp);
             }).catch((err) => {
                 console.log(err)
             })
@@ -41,9 +43,8 @@ function LihatTransaksi() {
                         &nbsp;&nbsp;&nbsp;{ anggota }
                     </button>
                     <div className = "Lihat-transaksi-dropdown-content">
-                        <div class = "anggota-option">Semua</div>
                         { daftarAnggota.map((anggota) => (
-                            <div class = "anggota-option">{ anggota }</div>
+                            <div class = "anggota-option" onClick={() => setAnggota(anggota)}>{ anggota }</div>
                         ))}
                     </div>
                 </div>
@@ -82,6 +83,15 @@ function LihatTransaksi() {
                                     return Date.parse(transaksi.mutationDate) <= Date.parse(toDate);
                                 } else if (fromDate != null && toDate != null){
                                     return Date.parse(transaksi.mutationDate) >= Date.parse(fromDate) && Date.parse(transaksi.mutationDate) <= Date.parse(toDate);
+                                } else {
+                                    return true;
+                                }
+                            })
+                            .filter((transaksi) => {
+                                if (anggota != "Semua") {
+                                    return transaksi.mutationMemberName == anggota;
+                                } else {
+                                    return true;
                                 }
                             })
                             .map((transaksi, index) => (
