@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.simpanpinjam.backend.service.MutationService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,14 +22,21 @@ public class MutationController {
     @GetMapping(value = "/all")
     public List<Mutation> getMutations() {
         return mutationService.findAll();
-
     }
 
     @CrossOrigin(origins = "http://localhost:3000")
-    @PostMapping(value = "/create")
-    public void createMutation(@RequestBody Mutation mutation) {
-        mutationService.insertMutation(mutation);
-
+    @RequestMapping(
+            value="/create",
+            method=RequestMethod.POST,
+            consumes="application/json")
+    public void createMutation(@RequestBody String json) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            Mutation mutation = objectMapper.readValue(json, Mutation.class);
+            mutationService.insertMutation(mutation);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @CrossOrigin(origins = "http://localhost:3000")

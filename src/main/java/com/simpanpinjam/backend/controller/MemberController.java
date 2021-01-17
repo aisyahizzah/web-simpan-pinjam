@@ -52,5 +52,11 @@ public class MemberController {
 
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping(value = "/name")
+    public List<String> getMembersName() {
+        return memberService.findAllNames();
+
+    }
 
 }

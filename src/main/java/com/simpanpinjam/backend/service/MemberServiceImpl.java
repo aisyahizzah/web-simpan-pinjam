@@ -17,6 +17,12 @@ public class MemberServiceImpl implements MemberService{
     public List<Member> findAll() {
         return memberDao.findAll();
     }
+
+    @Override
+    public List<String> findAllNames() {
+        return memberDao.findAllNames();
+    }
+
     @Override
     public void insertMember(Member member) {
         memberDao.insertMember(member);
@@ -38,4 +44,5 @@ public class MemberServiceImpl implements MemberService{
         memberDao.deleteMember(member);
 
     }
+
 }

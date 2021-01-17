@@ -1,6 +1,7 @@
 package com.simpanpinjam.backend.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.PreparedStatementCallback;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
@@ -30,6 +32,17 @@ public class MemberDaoImpl implements MemberDao{
     public List<Member> findAll() {
         return template.query("select * from member", new MemberRowMapper());
     }
+
+    @Override
+    public List<String> findAllNames() {
+        return template.query("select membername from member", new RowMapper<String>() {
+            @Override
+            public String mapRow(ResultSet rs, int i) throws SQLException {
+                return rs.getString("memberName");
+            }
+        });
+    }
+
     @Override
     public void insertMember(Member member) {
         final String sql = "insert into member(memberId, memberName , memberAddress,memberBirthDate) values(:memberId,:memberName,:memberBirthDate,:memberAddress)";
@@ -95,7 +108,6 @@ public class MemberDaoImpl implements MemberDao{
                 return ps.executeUpdate();
             }
         });
-
 
     }
 

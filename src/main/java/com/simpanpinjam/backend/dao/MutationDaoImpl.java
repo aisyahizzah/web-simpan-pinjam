@@ -30,16 +30,17 @@ public class MutationDaoImpl implements MutationDao{
     public List<Mutation> findAll() {
         return template.query("select * from mutation", new MutationRowMapper());
     }
+
     @Override
     public void insertMutation(Mutation mutation) {
-        final String sql = "insert into mutation(date, transactionTypeId , memberId, nominal) values(:date,:transactionTypeId,:date,:nominal)";
+
+        final String sql = "insert into mutation(date, transactionType , memberName, nominal) values(:date,:transactionType,:memberName,:nominal)";
 
         KeyHolder holder = new GeneratedKeyHolder();
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("mutationId", mutation.getMutationId())
                 .addValue("date", mutation.getMutationDate())
-                .addValue("transactionTypeId", mutation.getMutationTransactionTypeId())
-                .addValue("memberId", mutation.getMutationMemberId())
+                .addValue("transactionType", mutation.getMutationTransactionType())
+                .addValue("memberName", mutation.getMutationMemberName())
                 .addValue("nominal", mutation.getMutationNominal());
         template.update(sql,param, holder);
 
@@ -47,14 +48,13 @@ public class MutationDaoImpl implements MutationDao{
 
     @Override
     public void updateMutation(Mutation mutation) {
-        final String sql = "update mutation set date=:date, transactionTypeId=:transactionTypeId, memberId=:memberId, nominal=:nominal where mutationId=:mutationId";
+        final String sql = "update mutation set date=:date, transactionType=:transactionType, memberName=:memberName, nominal=:nominal where mutationId=:mutationId";
 
         KeyHolder holder = new GeneratedKeyHolder();
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("mutationId", mutation.getMutationId())
                 .addValue("date", mutation.getMutationDate())
-                .addValue("transactionTypeId", mutation.getMutationTransactionTypeId())
-                .addValue("memberId", mutation.getMutationMemberId())
+                .addValue("transactionType", mutation.getMutationTransactionType())
+                .addValue("memberName", mutation.getMutationMemberName())
                 .addValue("nominal", mutation.getMutationNominal());
         template.update(sql,param, holder);
 
@@ -62,13 +62,13 @@ public class MutationDaoImpl implements MutationDao{
 
     @Override
     public void executeUpdateMutation(Mutation mutation) {
-        final String sql = "update mutation set transactionTypeId=:transactionTypeId, memberId=:memberId, date=:date, nominal=:nominal where mutationId=:mutationId";
+        final String sql = "update mutation set transactionType=:transactionType, memberName=:memberName, date=:date, nominal=:nominal where mutationId=:mutationId";
 
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("mutationId", mutation.getMutationId());
         map.put("date", mutation.getMutationDate());
-        map.put("transactionTypeId", mutation.getMutationTransactionTypeId());
-        map.put("memberId", mutation.getMutationMemberId());
+        map.put("transactionType", mutation.getMutationTransactionType());
+        map.put("memberName", mutation.getMutationMemberName());
         map.put("nominal", mutation.getMutationNominal());
 
         template.execute(sql,map,new PreparedStatementCallback<Object>() {
@@ -84,7 +84,7 @@ public class MutationDaoImpl implements MutationDao{
     @Override
     public void deleteMutation(Mutation mutation) {
         final String sql = "delete from mutation where mutationId=:mutationId";
-
+        
         Map<String,Object> map=new HashMap<String,Object>();
         map.put("mutationId", mutation.getMutationId());
 
@@ -95,7 +95,6 @@ public class MutationDaoImpl implements MutationDao{
                 return ps.executeUpdate();
             }
         });
-
 
     }
 

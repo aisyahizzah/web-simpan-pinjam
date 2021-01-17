@@ -8,6 +8,8 @@ public interface MemberDao {
 
     List<Member> findAll();
 
+    List<String> findAllNames();
+
     void insertMember(Member member);
 
     void updateMember(Member member);

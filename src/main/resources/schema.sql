@@ -6,17 +6,11 @@ CREATE TABLE member (
     PRIMARY KEY (memberId)
 );
 
-CREATE TABLE transactionType (
-    transactionId SERIAL NOT NULL,
-    transactionName varchar(20),
-    PRIMARY KEY (transactionId)
-);
-
 CREATE TABLE mutation (
     mutationId SERIAL NOT NULL,
     date DATE,
-    transactionTypeId INTEGER,
-    memberId INTEGER,
+    transactionType varchar(10),
+    memberName varchar(20),
     nominal INTEGER,
     PRIMARY KEY (mutationId)
 );

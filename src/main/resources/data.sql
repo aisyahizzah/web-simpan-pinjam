@@ -2,12 +2,9 @@ INSERT INTO member (membername, memberbirthdate, memberaddress) VALUES ('Wawan S
 INSERT INTO member (membername, memberbirthdate, memberaddress) VALUES ('Teguh Sudibyantoro', '1991-02-10', 'Jalan Pemekaran No 99');
 INSERT INTO member (membername, memberbirthdate, memberaddress) VALUES ('Joko Widodo', '1992-03-10', 'Dusun Pisang Rt 10 Rw 20');
 
-INSERT INTO transactiontype (transactionname) VALUES ('Simpan');
-INSERT INTO transactiontype (transactionname) VALUES ('Pinjam');
-
-INSERT INTO mutation (date, transactiontypeid, memberid, nominal) VALUES ('2020-08-17', 1, 1, 1000000);
-INSERT INTO mutation (date, transactiontypeid, memberid, nominal) VALUES ('2020-08-18', 1, 2, 5000000);
-INSERT INTO mutation (date, transactiontypeid, memberid, nominal) VALUES ('2020-09-30', 2, 3, 2000000);
-INSERT INTO mutation (date, transactiontypeid, memberid, nominal) VALUES ('2020-11-10', 1, 3, 1000000);
-INSERT INTO mutation (date, transactiontypeid, memberid, nominal) VALUES ('2020-12-01', 1, 1, 5000000);
-INSERT INTO mutation (date, transactiontypeid, memberid, nominal) VALUES ('2020-09-30', 2, 2, 2000000);
+INSERT INTO mutation (date, transactiontype, memberName, nominal) VALUES ('2020-08-17', 'Simpan', 'Wawan Setiawan', 1000000);
+INSERT INTO mutation (date, transactiontype, memberName, nominal) VALUES ('2020-08-18', 'Simpan', 'Teguh Sudibyantoro', 5000000);
+INSERT INTO mutation (date, transactiontype, memberName, nominal) VALUES ('2020-09-30', 'Pinjam', 'Joko Widodo', 2000000);
+INSERT INTO mutation (date, transactiontype, memberName, nominal) VALUES ('2020-11-10', 'Simpan', 'Joko Widodo', 1000000);
+INSERT INTO mutation (date, transactiontype, memberName, nominal) VALUES ('2020-12-01', 'Simpan', 'Wawan Setiawan', 5000000);
+INSERT INTO mutation (date, transactiontype, memberName, nominal) VALUES ('2020-09-30', 'Pinjam', 'Teguh Sudibyantoro', 2000000);
