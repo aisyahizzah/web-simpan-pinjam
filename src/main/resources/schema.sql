@@ -14,7 +14,7 @@ CREATE TABLE transactionType (
 
 CREATE TABLE moneyMutation (
     date DATE,
-    transactionTypeId varchar(5),
-    memberId varchar(5),
-    nominal varchar(20)
+    transactionTypeId INTEGER,
+    memberId INTEGER,
+    nominal INTEGER
 );
