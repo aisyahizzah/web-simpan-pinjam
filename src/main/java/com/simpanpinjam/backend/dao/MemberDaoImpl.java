@@ -45,11 +45,10 @@ public class MemberDaoImpl implements MemberDao{
 
     @Override
     public void insertMember(Member member) {
-        final String sql = "insert into member(memberId, memberName , memberAddress,memberBirthDate) values(:memberId,:memberName,:memberBirthDate,:memberAddress)";
+        final String sql = "insert into member(memberName , memberAddress,memberBirthDate) values(:memberName,:memberBirthDate,:memberAddress)";
 
         KeyHolder holder = new GeneratedKeyHolder();
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("memberId", member.getMemberId())
                 .addValue("memberName", member.getMemberName())
                 .addValue("memberBirthDate", member.getMemberBirthDate())
                 .addValue("memberAddress", member.getMemberAddress());

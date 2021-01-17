@@ -30,6 +30,7 @@ public class MutationController {
             method=RequestMethod.POST,
             consumes="application/json")
     public void createMutation(@RequestBody String json) {
+        System.out.println(json);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             Mutation mutation = objectMapper.readValue(json, Mutation.class);
