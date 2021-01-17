@@ -18,24 +18,24 @@ public class MemberServiceImpl implements MemberService{
         return memberDao.findAll();
     }
     @Override
-    public void insertMember(Member emp) {
-        memberDao.insertMember(emp);
+    public void insertMember(Member member) {
+        memberDao.insertMember(member);
 
     }
     @Override
-    public void updateMember(Member emp) {
-        memberDao.updateMember(emp);
+    public void updateMember(Member member) {
+        memberDao.updateMember(member);
 
     }
     @Override
-    public void executeUpdateMember(Member emp) {
-        memberDao.executeUpdateMember(emp);
+    public void executeUpdateMember(Member member) {
+        memberDao.executeUpdateMember(member);
 
     }
 
     @Override
-    public void deleteMember(Member emp) {
-        memberDao.deleteMember(emp);
+    public void deleteMember(Member member) {
+        memberDao.deleteMember(member);
 
     }
 }

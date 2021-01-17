@@ -12,9 +12,11 @@ CREATE TABLE transactionType (
     PRIMARY KEY (transactionId)
 );
 
-CREATE TABLE moneyMutation (
+CREATE TABLE mutation (
+    mutationId SERIAL NOT NULL,
     date DATE,
     transactionTypeId INTEGER,
     memberId INTEGER,
-    nominal INTEGER
+    nominal INTEGER,
+    PRIMARY KEY (mutationId)
 );

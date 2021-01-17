@@ -7,12 +7,12 @@ import com.simpanpinjam.backend.entity.Member;
 public interface MemberService {
     List<Member> findAll();
 
-    void insertMember(Member emp);
+    void insertMember(Member member);
 
-    void updateMember(Member emp);
+    void updateMember(Member member);
 
-    void executeUpdateMember(Member emp);
+    void executeUpdateMember(Member member);
 
-    void deleteMember(Member emp);
+    void deleteMember(Member member);
 
 }
